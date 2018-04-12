@@ -4516,7 +4516,13 @@ int tracker_mem_add_group_and_storage(TrackerClientInfo *pClientInfo, \
 		}
 	}
 
-	if ((result=tracker_mem_add_storage(pClientInfo, storage_id, ip_addr, \
+	const char * ipinfo = pJoinBody->ip_addr;
+	if(pJoinBody->ip_addr[0] == 0 || pJoinBody->ip_addr[0] == '0' || \
+		(pJoinBody->ip_addr[0] == '1' && pJoinBody->ip_addr[1] == '2' && pJoinBody->ip_addr[2] == '7')) {
+			ipinfo = ip_addr;
+		}
+
+	if ((result=tracker_mem_add_storage(pClientInfo, storage_id, ipinfo, \
 			bNeedSleep, true, &bStorageInserted)) != 0)
 	{
 		return result;

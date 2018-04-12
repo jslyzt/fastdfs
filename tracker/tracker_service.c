@@ -1468,8 +1468,10 @@ static int tracker_deal_storage_join(struct fast_task_info *pTask)
 
 	*(pBody->version + (sizeof(pBody->version) - 1)) = '\0';
 	*(pBody->domain_name + (sizeof(pBody->domain_name) - 1)) = '\0';
+	*(pBody->ip_addr + (sizeof(pBody->ip_addr) - 1)) = '\0';
 	strcpy(joinBody.version, pBody->version);
 	strcpy(joinBody.domain_name, pBody->domain_name);
+	strcpy(joinBody.ip_addr, pBody->ip_addr);
 	joinBody.init_flag = pBody->init_flag;
 	joinBody.status = pBody->status;
 

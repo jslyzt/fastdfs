@@ -393,10 +393,11 @@ typedef struct
 	int upload_priority;
 	int join_time; //storage join timestamp (create timestamp)
 	int up_time;   //storage service started timestamp
-        char version[FDFS_VERSION_SIZE];   //storage version
+	char version[FDFS_VERSION_SIZE];   //storage version
 	char group_name[FDFS_GROUP_NAME_MAX_LEN + 1];
-        char domain_name[FDFS_DOMAIN_NAME_MAX_SIZE];
-        char init_flag;
+	char domain_name[FDFS_DOMAIN_NAME_MAX_SIZE];
+	char ip_addr[IP_ADDRESS_SIZE];
+	char init_flag;
 	signed char status;
 	int tracker_count;
 	ConnectionInfo tracker_servers[FDFS_MAX_TRACKERS];

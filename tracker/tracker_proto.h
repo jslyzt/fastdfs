@@ -134,6 +134,7 @@ typedef struct
 	char up_time[FDFS_PROTO_PKG_LEN_SIZE];   //storage service started timestamp
 	char version[FDFS_VERSION_SIZE];   //storage version
 	char domain_name[FDFS_DOMAIN_NAME_MAX_SIZE];
+	char ip_addr[IP_ADDRESS_SIZE];
 	char init_flag;
 	signed char status;
 	char tracker_count[FDFS_PROTO_PKG_LEN_SIZE];  //all tracker server count

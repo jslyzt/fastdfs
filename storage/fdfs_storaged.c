@@ -148,7 +148,7 @@ int main(int argc, char *argv[])
 		return result;
 	}
 
-	sock = socketServer(g_bind_addr, g_server_port, &result);
+	sock = socketServer(NULL, g_server_port, &result);
 	if (sock < 0)
 	{
 		logCrit("exit abnormally!\n");
