@@ -390,8 +390,7 @@ static int relationship_select_leader()
 		return 0;
 	}
 
-	logInfo("file: "__FILE__", line: %d, " \
-		"selecting leader...", __LINE__);
+	//logInfo("file: "__FILE__", line: %d, selecting leader...", __LINE__);
 
 	if ((result=relationship_get_tracker_leader(&trackerStatus)) != 0)
 	{

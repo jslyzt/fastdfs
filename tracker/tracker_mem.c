@@ -3685,6 +3685,12 @@ static int _tracker_mem_add_storage(FDFSGroupInfo *pGroup, \
 		return result;
 	}
 
+	if(id != NULL) {
+		logInfo("tracker_mem_add_storage id=%s, ip_addr=%s, \n", id, ip_addr, storage_id, g_use_storage_id);
+	} else {
+		logInfo("tracker_mem_add_storage ip_addr=%s, storage_id=%d, g_use_storage_id=%d\n", ip_addr, storage_id, g_use_storage_id);
+	}
+
 	do
 	{
 		result = 0;
@@ -3692,10 +3698,10 @@ static int _tracker_mem_add_storage(FDFSGroupInfo *pGroup, \
 		*ppStorageServer = tracker_mem_get_storage(pGroup, storage_id);
 		if (*ppStorageServer != NULL)
 		{
-			if (g_use_storage_id)
+			if (g_use_storage_id || strcmp((*ppStorageServer)->ip_addr, ip_addr) != 0)
 			{
-				memcpy ((*ppStorageServer)->ip_addr, ip_addr, \
-					IP_ADDRESS_SIZE);
+				memcpy ((*ppStorageServer)->ip_addr, ip_addr, IP_ADDRESS_SIZE);
+				logInfo("tracker_mem_add_storage copy ip_addr 1 \n");
 			}
 
 			if ((*ppStorageServer)->status==FDFS_STORAGE_STATUS_DELETED \
@@ -3709,8 +3715,7 @@ static int _tracker_mem_add_storage(FDFSGroupInfo *pGroup, \
 
 		if (pGroup->count >= pGroup->alloc_size)
 		{
-			result = tracker_mem_realloc_store_servers( \
-					pGroup, 1, bNeedSleep);
+			result = tracker_mem_realloc_store_servers(pGroup, 1, bNeedSleep);
 			if (result != 0)
 			{
 				break;
@@ -3718,12 +3723,12 @@ static int _tracker_mem_add_storage(FDFSGroupInfo *pGroup, \
 		}
 
 		*ppStorageServer = *(pGroup->all_servers + pGroup->count);
-		snprintf((*ppStorageServer)->id, FDFS_STORAGE_ID_MAX_SIZE, \
-				"%s", storage_id);
+		snprintf((*ppStorageServer)->id, FDFS_STORAGE_ID_MAX_SIZE, "%s", storage_id);
 		memcpy((*ppStorageServer)->ip_addr, ip_addr, IP_ADDRESS_SIZE);
 
-		tracker_mem_insert_into_sorted_servers(*ppStorageServer, \
-				pGroup->sorted_servers, pGroup->count);
+		logInfo("tracker_mem_add_storage copy ip_addr 2 \n");
+
+		tracker_mem_insert_into_sorted_servers(*ppStorageServer, pGroup->sorted_servers, pGroup->count);
 		pGroup->count++;
 		pGroup->chg_count++;
 
