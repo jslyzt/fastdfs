@@ -3628,7 +3628,7 @@ static int _tracker_mem_add_storage(FDFSGroupInfo *pGroup, \
 	int result;
 	const char *storage_id;
 
-	if (*ip_addr == '\0')
+	if (ip_addr == NULL || *ip_addr == '\0')
 	{
 		logError("file: "__FILE__", line: %d, " \
 			"ip address is empty!", __LINE__);
