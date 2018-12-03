@@ -170,7 +170,7 @@ static int fdfs_dump_storage_stat(FDFSStorageDetail *pServer,
 	int total_len;
 
 	total_len = snprintf(buff, buffSize, 
-		"ip_addr=%s\n"
+		"ip_addr=127.0.0.1\n"
 		"version=%s\n"
 		"status=%d\n"
 		"domain_name=%s\n"
@@ -213,7 +213,7 @@ static int fdfs_dump_storage_stat(FDFSStorageDetail *pServer,
 		"last_sync_update=%s\n"
 		"last_synced_timestamp=%s\n"
 		"last_heart_beat_time=%s\n",
-		pServer->ip_addr, 
+		//pServer->ip_addr, 
 		pServer->version, 
 		pServer->status, 
 		pServer->domain_name, 

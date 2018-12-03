@@ -30,23 +30,33 @@ fi
 CMD="$PRG $CONF"
 RETVAL=0
 
+tstart() {
+	echo -n $"Starting FastDFS tracker server direct: "
+	$CMD
+	RETVAL=$?
+	return $RETVAL
+}
+
 start() {
- 	echo -n $"Starting FastDFS tracker server: "
+	echo -n $"Starting FastDFS tracker server: "
 	$CMD &
 	RETVAL=$?
 	echo
 	return $RETVAL
 }
+
 stop() {
-    $CMD stop
+	$CMD stop
 	RETVAL=$?
 	return $RETVAL
 }
+
 rhstatus() {
 	status fdfs_trackerd
 }
+
 restart() {
-        $CMD restart &
+	$CMD restart &
 }
 
 case "$1" in
@@ -62,11 +72,11 @@ case "$1" in
   restart|reload)
   	restart
 	;;
-  condrestart)
-  	restart
+  tstart)
+  	tstart
 	;;
   *)
-	echo $"Usage: $0 {start|stop|status|restart|condrestart}"
+	echo $"Usage: $0 {start|stop|status|restart|tstart}"
 	exit 1
 esac
 
