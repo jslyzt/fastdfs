@@ -1960,7 +1960,7 @@ int tracker_save_storages()
 				STORAGE_SECTION_NAME_PREFIX, count, id_buff, \
 				STORAGE_ITEM_GROUP_NAME, \
 				(*ppGroup)->group_name, \
-				STORAGE_ITEM_IP_ADDR, pStorage->ip_addr, \
+				STORAGE_ITEM_IP_ADDR, "127.0.0.1", \
 				STORAGE_ITEM_STATUS, pStorage->status, \
 				STORAGE_ITEM_VERSION, pStorage->version, \
 				STORAGE_ITEM_JOIN_TIME, \
